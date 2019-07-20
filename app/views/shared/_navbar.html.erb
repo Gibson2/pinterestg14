@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <!--Brand and Image -->
-    <a class="navbar-brand" href="<%= root_path %>">
+    <a class="navbar-brand text-danger" href="<%= root_path %>">
         <!--<img src="/docs/4.3/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">-->
         <i class="fab fa-pinterest"></i>
         Pinterest
@@ -24,6 +24,10 @@
       <li class="nav-item">
         <a class="nav-link" href="<%= pages_contact_path %>">Contacto</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%= pins_path %>">Pins</a>
+      </li>
+
 
       <%# <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -40,10 +44,23 @@
         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
       </li> %>
     </ul>
-    
-    <form class="form-inline">
+
+    <form class="form-inline mr-4">
+        <!-- Nombre de Usuario -->
         <%# <img src="/docs/4.3/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt=""> %>
-        <span class="navbar-text"> <i class="far fa-user-circle"></i> Mi Usuario </span>
+        <span class="navbar-text"><i class="far fa-user-circle"></i> Mi Usuario </span>
+<!--         <%# unless user_signed_in? %>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <%= link_to "Registrate", root_path, class: "btn btn-primary btn-md navbar-btn", type: "button" %>
+            </li>
+            <li class="nav-item">
+                <%= link_to "Tu Cuenta", root_path, class: "btn btn-primary btn-md navbar-btn", type: "button" %>
+            </li>
+        </ul>
+        <%# else %>
+        <%#= link_to "Cerrar Sesión", destroy_user_session_path, method: :delete, class: "btn btn-primary navbar-btn", type: "button"%>
+        <%# end %> -->
     </form>
 
     <form class="form-inline my-2 my-lg-0">

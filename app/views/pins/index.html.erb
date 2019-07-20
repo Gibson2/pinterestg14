@@ -1,0 +1,70 @@
+<div>
+  <h1>Pins</h1>
+
+  <div class= "container text-right" style="padding: 1.5rem;">
+    <%= link_to 'New Pin', new_pin_path, class: "btn btn-primary", role: "button" %>
+  </div>
+
+  <div class="card-columns">
+    <% @pins.each do |pin| %>
+      <div class="card">
+        <%= image_tag(pin.image, class:'card-img-top') %>
+        <div class="card-body">
+          <h5 class="card-title"><%= pin.title %></h5>
+          <p class="card-text"><%= pin.description %></p>
+        </div>
+
+        <div class="card-footer text-center">
+          <%= link_to 'Show', pin, class: "btn btn-outline-primary", role: "button" %>
+          <%= link_to 'Edit', edit_pin_path(pin), class: "btn btn-outline-secondary", role: "button" %>
+          <%= link_to 'Destroy', pin, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger", role: "button" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Image</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th colspan="4"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @pins.each do |pin| %>
+        <tr>
+          <td><%= image_tag(pin.image, class: "img-thumbnail", style: 'max-width: 100px')  %></td>
+          <!-- <%# <td><img src="<%= pin.image %>" class="img-thumbnail" style="max-width:100px; min-width: 50px" alt=""></td> %> -->
+          <td><%= pin.title %></td>
+          <td><%= pin.description %></td>
+          <td><%= link_to 'Show', pin, class: "btn btn-outline-primary", role: "button" %></td>
+          <td><%= link_to 'Edit', edit_pin_path(pin), class: "btn btn-outline-secondary", role: "button" %></td>
+          <td><%= link_to 'Destroy', pin, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger", role: "button" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div>
+
+<div class="container">
+  <div class="row">
+    <% @pins.each do |pin| %>
+      <div class="col-md-4">
+          <%= image_tag(pin.image, class: "img-fluid text-center")  %>
+          <h3><%= pin.title %></h3>
+          <p><%= pin.description %></p>
+          <div class= "container text-center">
+          <%= link_to 'Show', pin, class: "btn btn-outline-primary", role: "button" %>
+          <%= link_to 'Edit', edit_pin_path(pin), class: "btn btn-outline-secondary", role: "button" %>
+          <%= link_to 'Destroy', pin, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger", role: "button" %>
+          </div>
+      </div>
+    <% end %>
+  </div>
+</div>
