@@ -5,3 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+=begin 5.times do
+Pin.create(
+    title: Faker::DcComics.title,
+    description: Faker::Superhero.name,
+    image: 'http://lorempixel.com/800/700/'
+)
+end =end
