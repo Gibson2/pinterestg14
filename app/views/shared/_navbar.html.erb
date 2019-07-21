@@ -27,50 +27,40 @@
       <li class="nav-item">
         <a class="nav-link" href="<%= pins_path %>">Pins</a>
       </li>
-
-
-      <%# <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-      </li> %>
     </ul>
 
-    <form class="form-inline mr-4">
+    <form class="form-inline mr-4 align-middl">
         <!-- Nombre de Usuario -->
         <%# <img src="/docs/4.3/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt=""> %>
-        <span class="navbar-text"><i class="far fa-user-circle"></i> Mi Usuario </span>
 
+        <%  unless user_signed_in? %>
+          
+            <%= link_to "Registrate", new_user_registration_path, class: "btn btn-outline-primary btn-sm mr-2", role: "button" %>
+          
+            <%= link_to "Tu Cuenta", user_session_path, class: "btn btn-outline-secondary btn-sm mr-2", role: "button" %>
+          
+        <% else %>
 
+          <span class="navbar-text mr-2 align-middle">
+            <% if current_user.avatar != nil %>
+              <%= image_tag(current_user.avatar, class:'img-fluid rounded-circle align-middle', style: 'max-width: 2.1rem') %>
+            <% else %>
+              <i class="far fa-user-circle mr-2"></i>
+            <% end %>
+            Usuario: <%= current_user.name %> | <%= current_user.email %>
+          </span>
 
+            <%= link_to "Cerrar Sesión", destroy_user_session_path, method: :delete, class: "btn btn-outline-danger btn-sm mr-2", role: "button" %>
 
-      <p><%#= Faker::Name.name  %> </p>
-<!--         <%# unless user_signed_in? %>
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <%= link_to "Registrate", root_path, class: "btn btn-primary btn-md navbar-btn", type: "button" %>
-            </li>
-            <li class="nav-item">
-                <%= link_to "Tu Cuenta", root_path, class: "btn btn-primary btn-md navbar-btn", type: "button" %>
-            </li>
-        </ul>
-        <%# else %>
-        <%#= link_to "Cerrar Sesión", destroy_user_session_path, method: :delete, class: "btn btn-primary navbar-btn", type: "button"%>
-        <%# end %> -->
+        <% end %>
+        
     </form>
 
+    <%  if user_signed_in? %>
     <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      <input class="form-control mr-sm-2 btn-sm" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0 btn-sm" type="submit">Search</button>
     </form>
+    <% end %>
   </div>
 </nav>

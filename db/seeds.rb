@@ -6,10 +6,26 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-=begin 5.times do
-Pin.create(
-    title: Faker::DcComics.title,
-    description: Faker::Superhero.name,
-    image: 'http://lorempixel.com/800/700/'
+=begin Pin.destroy_all
+User.destroy_all
+
+5.times do |i|
+
+u = User.create!(
+    name: Faker::Twitter.screen_name,
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    email: "#{i + 1}@gmail.com",
+    password: '123456',
+    address: Faker::Address.full_address,
+    avatar: Faker::Avatar.image
 )
+
+p = Pin.create!(
+    title: Faker::DcComics.title,
+    description: Faker::Lorem.paragraph,
+    image: 'http://lorempixel.com/800/700/',
+    user: u
+)
+
 end =end

@@ -1,15 +1,22 @@
 class PinsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_pin, only: [:show, :edit, :update, :destroy]
+
+  include ActionView::Helpers::DateHelper
 
   # GET /pins
   # GET /pins.json
   def index
     @pins = Pin.all
+
+    
   end
 
   # GET /pins/1
   # GET /pins/1.json
   def show
+    from_time = (@pin.updated_at)
+    @updatetime = time_ago_in_words(from_time, include_seconds: true)
   end
 
   # GET /pins/new
@@ -25,6 +32,7 @@ class PinsController < ApplicationController
   # POST /pins.json
   def create
     @pin = Pin.new(pin_params)
+    @pin.user = current_user 
 
     respond_to do |format|
       if @pin.save
