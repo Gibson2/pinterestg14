@@ -17,7 +17,9 @@
         <div class="card-footer text-center">
           <%= link_to 'Show', pin, class: "btn btn-outline-primary", role: "button" %>
           <%= link_to 'Edit', edit_pin_path(pin), class: "btn btn-outline-secondary", role: "button" %>
-          <%= link_to 'Destroy', pin, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger", role: "button" %>
+          <% if can?(:destroy, pin) %>
+            <%= link_to 'Destroy', pin, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger", role: "button" %>
+          <% end %>
         </div>
       </div>
     <% end %>

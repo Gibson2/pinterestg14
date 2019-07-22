@@ -1,8 +1,9 @@
 class PinsController < ApplicationController
-  before_action :authenticate_user!
-  before_action :set_pin, only: [:show, :edit, :update, :destroy]
-
   include ActionView::Helpers::DateHelper
+  before_action :authenticate_user!
+  #before_action :set_pin, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
+
 
   # GET /pins
   # GET /pins.json
@@ -62,6 +63,7 @@ class PinsController < ApplicationController
   # DELETE /pins/1
   # DELETE /pins/1.json
   def destroy
+    
     @pin.destroy
     respond_to do |format|
       format.html { redirect_to pins_url, notice: 'Pin was successfully destroyed.' }

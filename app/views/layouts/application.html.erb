@@ -23,7 +23,22 @@
 
   <body>
     <%= render 'shared/navbar' %>
-    <p id="notice"><%= notice %></p>
+    <% if alert.present? %>
+      <div class="alert alert-danger" role="alert">
+        <%= alert %>
+      </div>
+    <% end %>
+    <% if notice.present? %>
+      <div class="alert alert-warning" role="alert">
+        <%= notice %>
+      </div>
+    <% end %>
+
+
+
+
+
+
     <div class="container">
       <%= yield %>
     </div>
