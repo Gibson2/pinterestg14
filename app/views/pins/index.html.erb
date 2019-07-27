@@ -1,7 +1,9 @@
   <h1>Pins</h1>
 
   <div class= "container text-right" style="padding: 1.5rem;">
+  <% if can? :create, Pin %>
     <%= link_to 'New Pin', new_pin_path, class: "btn btn-primary", role: "button" %>
+  <% end %>
   </div>
 
   <div class="card-columns">

@@ -5,4 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   
   has_many :pins
+
+  enum role: [:admin, :client, :visit]
 end

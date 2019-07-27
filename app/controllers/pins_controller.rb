@@ -1,16 +1,17 @@
 class PinsController < ApplicationController
   include ActionView::Helpers::DateHelper
-  before_action :authenticate_user!
-  #before_action :set_pin, only: [:show, :edit, :update, :destroy]
   load_and_authorize_resource
-
+  #before_action :authenticate_user!
+  #before_action :set_pin, only: [:show, :edit, :update, :destroy]
 
   # GET /pins
   # GET /pins.json
   def index
-    @pins = Pin.all
-
-    
+    if params[:q].present?
+      @pins = Pin.where('title like ?', "%#{params[:q]}%")
+    else
+      @pins = Pin.all
+    end
   end
 
   # GET /pins/1
@@ -33,7 +34,7 @@ class PinsController < ApplicationController
   # POST /pins.json
   def create
     @pin = Pin.new(pin_params)
-    @pin.user = current_user 
+    @pin.user = current_user
 
     respond_to do |format|
       if @pin.save
@@ -63,7 +64,6 @@ class PinsController < ApplicationController
   # DELETE /pins/1
   # DELETE /pins/1.json
   def destroy
-    
     @pin.destroy
     respond_to do |format|
       format.html { redirect_to pins_url, notice: 'Pin was successfully destroyed.' }

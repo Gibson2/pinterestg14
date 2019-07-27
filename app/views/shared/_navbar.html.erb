@@ -47,7 +47,7 @@
             <% else %>
               <i class="far fa-user-circle mr-2"></i>
             <% end %>
-            Usuario: <%= current_user.name %> | <%= current_user.email %>
+            Usuario: <%= current_user.name %> | <%= current_user.email %> | <%= current_user.role %>
           </span>
 
             <%= link_to "Cerrar Sesión", destroy_user_session_path, method: :delete, class: "btn btn-outline-danger btn-sm mr-2", role: "button" %>
@@ -57,9 +57,9 @@
     </form>
 
     <%  if user_signed_in? %>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2 btn-sm" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0 btn-sm" type="submit">Search</button>
+    <form class="form-inline my-2 my-lg-0" action="<%= pins_path %>">
+      <input class="form-control mr-sm-2 btn-sm" type="search" placeholder="Buscar" aria-label="Search" name="q">
+      <button class="btn btn-outline-success my-2 my-sm-0 btn-sm" type="submit">Buscar</button>
     </form>
     <% end %>
   </div>
